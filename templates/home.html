@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Sales Prediction</title>
+    <link rel="shortcut icon" type="image/jpg" href="static/Images/icon.png"/>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Poppins&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <section id="banner">
+        <img src="static/Images/icon.png" class="logo">
+        <div class="banner-text">
+            <h1>Stores Sales Prediction</h1>
+            <p>Sales forecasting is an important tool for any growing business 
+                especially to determine future revenue and planning for any demand 
+                and will help make many important business decisions. Accurate sales 
+                forecasting can help you track data to gain insight into areas where improvements 
+                can be made. Such predictions can have huge impact on development of business.
+            </p>
+            <div class="banner-btn">
+                <a href="https://stores-sales-api.herokuapp.com"><span></span>Try API</a>
+            </div>
+        </div>
+    </section>
+    <br>
+
+    <section class="sub-form">
+        <h1>Fill The Details</h1>
+        <br>
+        <form class="form-horizontal" action="\predict" method="post">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="Item_Weight">Item_Weight:</label>
+                <div class="col-sm-12">
+                  <input name="Item_Weight" type="number" min="0" step="0.001" oninput="validity.valid||(value='');" class="form-control" id="Item_Weight" placeholder="Enter weight of item (gm)" required="required">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="Item_Fat_Content">Item_Fat_Content:</label>
+                <div class="col-sm-12">
+                  <select name="Item_Fat_Content" id="Item_Fat_Content" required="required" style="width: 100%;height: 35px;">
+                    <option value="Low Fat">Low Fat</option>
+                    <option value="Normal">Normal</option>
+                    <option value="Non-Edible">Non-Edible</option>
+                </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="Item_Visibility">Item_Visibility:</label>
+                <div class="col-sm-12">
+                  <input  name="Item_Visibility" type="number" min="0" max="1"  step="0.00001" oninput="validity.valid||(value='');" class="form-control" id="Item_Visibility" placeholder="Enter visibility of item(value should be between 0-1)" required="required">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="Item_Type">Item_Type:</label>
+                <div class="col-sm-12">
+                  <select name="Item_Type" id="Item_Type" required="required" style="width: 100%;height: 35px;">
+                    <option value="Food">Food</option>
+                    <option value="Drinks">Drinks</option>
+                    <option value="Non-Consumable">Non-Consumable</option>
+                </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="Item_MRP">Item_MRP:</label>
+                <div class="col-sm-12">
+                  <input  name="Item_MRP" type="number" min="0" oninput="validity.valid||(value='');" class="form-control" id="Item_MRP" placeholder="Enter MRP of item (&#8377;)" required="required">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="Outlet_Establishment_Year">Outlet_Establishment_Year:</label>
+                <div class="col-sm-12">
+                    <select id="Outlet_Establishment_Year" name="Outlet_Establishment_Year" style="width: 100%;height: 35px;">
+                        <script>
+                        var myDate = new Date();
+                        var year = myDate.getFullYear();
+                        for(var i = 1900; i < year+1; i++){
+                            document.write('<option value="'+i+'">'+i+'</option>');
+                        }
+                        </script>
+                      </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="Outlet_Size">Outlet_Size:</label>
+                <div class="col-sm-12">
+                  <select name="Outlet_Size" id="Outlet_Size" required="required" style="width: 100%;height: 35px;">
+                    <option value="Small">Small</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="Outlet_Location_Type">Outlet_Location_Type:</label>
+                <div class="col-sm-12">
+                  <select name="Outlet_Location_Type" id="Outlet_Location_Type" required="required" style="width: 100%;height: 35px;">
+                    <option value="Tier 1">Tier 1</option>
+                    <option value="Tier 2">Tier 2</option>
+                    <option value="Tier 3">Tier 3</option>
+                </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="Outlet_Type">Outlet_Type:</label>
+                <div class="col-sm-12">
+                  <select name="Outlet_Type" id="Outlet_Type" required="required" style="width: 100%;height: 35px;">
+                    <option value="Glocery Store">Glocery Store</option>
+                    <option value="Supermarket Type1">Supermarket Type1</option>
+                    <option value="Supermarket Type2">Supermarket Type2</option>
+                    <option value="Supermarket Type3">Supermarket Type3</option>
+                </select>
+                </div>
+            </div>
+            <br>
+            <br>
+            <!-- Submit -->
+            <div class="col-md-12 text-center">
+                <input type="submit" value="Submit" class="btn btn-primary btn-lg" >
+            </div>
+        </form>
+        <br>
+        <br>
+        {% if output is defined and output|length %}
+            <div  class="col-md-12 text-center">
+                <h3>Predicted Sales : {{ output }}</h3>
+            </div>
+            <br>
+        {% else %}
+        <br>
+        {% endif %}
+        
+    </section>
+    <section id="footer">
+        <div class="social-links">
+            <a href="https://github.com/Ganesh-Thorat-01"><i class="fa fa-github"></i></a>
+            <a href="mailto:thorat.ganeshscoe@gmail.com"><i class="fa fa-envelope"></i></a>
+            <a href="https://www.instagram.com/ganesh_thorat__/"><i class="fa fa-instagram"></i></a>
+            <a href="https://twitter.com/Ganesh_Thorat_"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCXhvVTaw3a8onPxwv2TbwUw"><i class="fa fa-youtube-play"></i></a>
+            <p>&copy; Copyright 2021 Ganesh Thorat</p>
+
+        </div>
+    </section>
+    
+
+
+</body>
+
+</html>
