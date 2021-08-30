@@ -121,13 +121,13 @@
             <br>
             <!-- Submit -->
             <div class="col-md-12 text-center">
-                <a href="#pred-val"><input type="submit" value="Submit" class="btn btn-primary btn-lg" ></a>
+                <input type="submit" value="Submit" class="btn btn-primary btn-lg">
             </div>
         </form>
         <br>
         <br>
         {% if output is defined and output|length %}
-            <div  class="col-md-12 text-center" id="pred-val">
+            <div  class="col-md-12 text-center">
                 <h3>Predicted Sales : {{ output }}</h3>
             </div>
             <br>
